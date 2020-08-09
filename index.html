@@ -25,7 +25,6 @@
                 <!-- Search column -->
                 <div class="col-md-2">
                     <div class="row mb-2">
-                        <!-- <h4>Search Temps:</h4> -->
                         <form id="city-search" method="POST">
                             <input type="text" id="city-input" placeholder="City">
                             <input id="search-btn" type="submit" class="btn btn-light mt-1" value="Search">
@@ -35,12 +34,14 @@
                         <ul id="past-cities" class="p-0"></ul>
                     </div>
                 </div>
-                <!-- Weather Display -->
+                <!-- Current City Weather Display -->
                 <div class="col-md-10">
-                    <div class="jumbotron">
-                        <div class="row justify-content-center">
-                            <h2 id="searchedCityDisplay"></h2>
-                        </div>
+                    <div class="jumbotron jumbotron-fluid ml-2 mb-1">
+                        <div class="row justify-content-center align-middle">
+                            <h2 id="searchedCityDisplay" class="mb-0"></h2>
+                            <span id="icon-row" class="">
+                        </span>
+                            </div>
                         <div class="row justify-content-center">
                             <small id="country-name"></small>
                         </div>
@@ -51,66 +52,71 @@
                         <div class="card-deck mt-4">
                             <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title">Temperature</h5>
-                                    <h3 class="card-text" id="temp-now"></h3>
+                                    <h6 class="card-title text-center">Temperature</h6>
+                                    <h3 class="card-text text-center" id="temp-now"></h3>
                                 </div>
                             </div>
                             <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title">Humidity</h5>
-                                    <h3 class="card-text" id="humid-now"></h3>
+                                    <h6 class="card-title text-center">Humidity</h6>
+                                    <h3 class="card-text text-center" id="humid-now"></h3>
                                 </div>
                             </div>
                             <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title">Wind Speed</h5>
-                                    <h3 class="card-text" id="wind-now"></h3>
+                                    <h6 class="card-title text-center">Wind Speed</h6>
+                                    <h3 class="card-text text-center" id="wind-now"></h3>
                                 </div>
                             </div>
                             <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                                 <div class="card-body">
-                                    <h5 class="card-title">UV Index</h5>
-                                    <h3 class="card-text" id="uv-index"></h3>
+                                    <h6 class="card-title text-center">UV Index</h6>
+                                    <h3 class="card-text text-center" id="uv-index"></h3>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="jumbotron">
+                    <div class="jumbotron jumbotron-fluid ml-2 mb-0">
                         <div class="row justify-content-center mb-4">
                             <h4 class="forecast">5-Day Forecast</h4>
                         </div>
                         <div class="card-deck">
-                            <div class="card">
+                            <div class="card text-center">
                                 <div class="card-body shadow-sm">
-                                    <small class="card-title" id="next-day-1"></small>
+                                    <p><small class="card-title" id="next-day-1"></small></p>
+                                    <img id="f-icon1"></img>
                                     <p class="card-text" id="f-temp1"></p>
                                     <p class="card-text" id="f-humid1"></p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card text-center">
                                 <div class="card-body shadow-sm">
-                                    <small class="card-title" id="next-day-2"></small>
+                                    <p><small class="card-title" id="next-day-2"></small></p>
+                                    <img id="f-icon2"></img>
                                     <p class="card-text" id="f-temp2"></p>
                                     <p class="card-text" id="f-humid2"></p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card text-center">
                                 <div class="card-body shadow-sm">
-                                    <small class="card-title" id="next-day-3"></small>
+                                    <p><small class="card-title" id="next-day-3"></small></p>
+                                    <img id="f-icon3"></img>
                                     <p class="card-text" id="f-temp3"></p>
                                     <p class="card-text" id="f-humid3"></p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card text-center">
                                 <div class="card-body shadow-sm">
-                                    <small class="card-title" id="next-day-4"></small>
+                                    <p><small class="card-title" id="next-day-4"></small></p>
+                                    <img id="f-icon4"></img>
                                     <p class="card-text" id="f-temp4"></p>
                                     <p class="card-text" id="f-humid4"></p>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card text-center">
                                 <div class="card-body shadow-sm">
-                                    <small class="card-title" id="next-day-5"></small>
+                                    <p><small class="card-title" id="next-day-5"></small></p>
+                                    <img id="f-icon5"></img>
                                     <p class="card-text" id="f-temp5"></p>
                                     <p class="card-text" id="f-humid5"></p>
                                 </div>

@@ -1,3 +1,7 @@
 .wrapper {
 padding-top: 5%;
 }
+
+.jumbotron {
+    padding: 1rem;
+}

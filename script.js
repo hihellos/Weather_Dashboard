@@ -1,7 +1,7 @@
 $(document).ready(function() {
     console.log("ready");
 
-    var key = "b0a1a1ca5591877ea2e9552cf91da345"
+    var key = "b0a1a1ca5591877ea2e9552cf91da345";
 
     // AJAX call to OpenWeather API - Current Weather Data
     function searchCityWeather(city) {
@@ -9,6 +9,7 @@ $(document).ready(function() {
         $("#temp-now").text("");
         $("#humid-now").text("");
         $("#wind-now").text("");
+        $("#icon-row").empty();
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
 
@@ -20,6 +21,11 @@ $(document).ready(function() {
 
             var cityName = response.name;
             $("#searchedCityDisplay").append(cityName);
+            
+            var iconNow = response.weather[0].icon;
+            var iconDisplay = $("<img>")
+            .attr('src', 'http://openweathermap.org/img/wn/' + iconNow + '@2x.png');
+            $("#icon-row").append(iconDisplay);
 
             var tempNow = response.main.temp;
             $("#temp-now").append(Math.round(tempNow) + "&deg;" + " F");
@@ -30,17 +36,30 @@ $(document).ready(function() {
             var windSpeedNow = response.wind.speed;
             $("#wind-now").append(Math.round(windSpeedNow) + " MPH");
 
-            // lat.push(response.coord.lat)
+            // searchUVindex();
+
+            var lat = response.coord.lat;
+            var lon = response.coord.lon;
+
+            // // AJAX call - UV Index
+            // function searchUVindex() {
+            //     var queryURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
+
+            //     $.ajax({
+            //         url: queryURL,
+            //         method: "GET"
+            //     }).then(function(response) {
+            //         console.log(response);
+
+            //         // var uvIndexNow = response.
+            //     })
+                
+            // }
+            
+            
         });
     }
 
-    // var lat = [];
-    // var lon = "";
-
-    // // AJAX call - UV Index
-    // function searchUVindex(uv) {
-    //     var queryURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
-    // }
 
     // AJAX Call - 5-Day Forecast
     function searchCityForecast(city) {
@@ -61,7 +80,11 @@ $(document).ready(function() {
         $("#f-humid3").text("");
         $("#f-humid4").text("");
         $("#f-humid5").text("");
-
+        $("#f-icon1").empty();
+        $("#f-icon2").empty();
+        $("#f-icon3").empty();
+        $("#f-icon4").empty();
+        $("#f-icon5").empty();
 
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key;
         
@@ -87,6 +110,17 @@ $(document).ready(function() {
             $("#next-day-4").text(nextDay4.slice(5, 10));
             var nextDay5 = response.list[38].dt_txt;
             $("#next-day-5").text(nextDay5.slice(5, 10));
+
+            var nextIcon1 = response.list[6].weather[0].icon;
+            $("#f-icon1").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon1 + '@2x.png');
+            var nextIcon2 = response.list[14].weather[0].icon;
+            $("#f-icon2").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon2 + '@2x.png');
+            var nextIcon3 = response.list[22].weather[0].icon;
+            $("#f-icon3").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon3 + '@2x.png');
+            var nextIcon4 = response.list[30].weather[0].icon;
+            $("#f-icon4").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon4 + '@2x.png');
+            var nextIcon5 = response.list[38].weather[0].icon;
+            $("#f-icon5").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon5 + '@2x.png');
 
             var nextTemp1 = response.list[6].main.temp;
             $("#f-temp1").append(nextTemp1 + "&deg;" + " F");
@@ -180,14 +214,16 @@ $(document).ready(function() {
 
     // When a city in the search history is clicked
     pastCityList.on("click", function(event) {
-        var element = event.target;
+        event.preventDefault();
 
-        if (element.matches("li") === true) {
-            var index = JSON.parse(localStorage.getItem(cities[i]));
+        // var element = event.target;
 
-            console.log(index);
-            searchCityWeather(index);
-        }
+        // if (element.matches("li") === true) {
+        //     var index = JSON.parse(localStorage.getItem(cities[i]));
+
+        //     console.log(index);
+        //     searchCityWeather(index);
+        // }
     })
 
     // When page is opened, present last searched city info

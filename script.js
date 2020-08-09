@@ -76,6 +76,7 @@ $(document).ready(function() {
             var li = $("<li>");
             li.text(city);
             li.attr("city-index", i);
+            li.addClass("btn btn-link list-group-item list-group-item-action list-group-item-light")
 
             pastCityList.prepend(li);
         }
@@ -113,4 +114,16 @@ $(document).ready(function() {
     });
 
     // When a city in the search history is clicked
+    pastCityList.on("click", function(event) {
+        var element = event.target;
+
+        if (element.matches("li") === true) {
+            var index = JSON.parse(localStorage.getItem(cities[i]));
+
+            console.log(index);
+            searchCityWeather(index);
+        }
+    })
+
+    // When page is opened, present last searched city info
 });

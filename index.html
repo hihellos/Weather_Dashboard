@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="Description" content="Enter your description here"/>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
-<link rel="stylesheet" href="assets/css/style.css">
-<title>Weather Dash - Search and compare weather across the country!</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="Description" content="Enter your description here"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>City Temps - Search and compare weather across the country!</title>
 </head>
 
 <body>
     <div class="container">
         <div class="page-header text-center mt-4 mb-4">
-            <h1>Weather Dashboard</h1>
+            <h1>City Temps</h1>
         </div>
     </div>
     <div class="container">
@@ -22,27 +24,82 @@
             <!-- Search column -->
             <div class="col-md-2">
                 <div class="row">
-                    <h4>Search for a City:</h4>
+                    <!-- <h4>Search Temps:</h4> -->
+                    <form id="city-search">
+                        <input type="text" id="city-input" placeholder="City">
+                        <input id="search-btn" type="submit" class="btn btn-light mt-1" value="Search">
+                    </form>
                 </div>
                 <div class="row">Search history goes here</div>
             </div>
             <!-- Weather Display -->
             <div class="col-md-10">
                 <div class="jumbotron">
-                    <div class="container">
-                        <h3>Search for a city to see the current weather data here</h3>
-                        <p id="city"></p>
-                        <p id="temp"></p>
-                        <p id="humidity"></p>
-                        <p id="wind-speed"></p>
-                        <p id="uv-index"></p>
+                    <div class="row justify-content-center">
+                        <h2 id="searchedCityDisplay"></h2>
                     </div>
-                    <div class="container">
-                        <div class="forecast">1</div>
-                        <div class="forecast">2</div>
-                        <div class="forecast">3</div>
-                        <div class="forecast">4</div>
-                        <div class="forecast">5</div>
+                    <div class="card-deck mt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Temperature</h5>
+                                <p class="card-text" id="temp-now"></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Humidity</h5>
+                                <p class="card-text">humid in %</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Wind Speed</h5>
+                                <p class="card-text">in MPH</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">UV Index</h5>
+                                <p class="card-text">color coded uv index</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="jumbotron">
+                    <div class="row justify-content-center mb-4">
+                        <h4 class="forecast">5-Day Forecast</h4>
+                    </div>
+                    <div class="card-deck">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Temperature</h5>
+                                <p class="card-text">Temp in degrees</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Humidity</h5>
+                                <p class="card-text">humid in %</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Wind Speed</h5>
+                                <p class="card-text">in MPH</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">UV Index</h5>
+                                <p class="card-text">color coded uv index</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">UV Index</h5>
+                                <p class="card-text">color coded uv index</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,9 +107,10 @@
     </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-<script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
 </body>
+
 </html>

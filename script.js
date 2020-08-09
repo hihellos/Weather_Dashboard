@@ -43,7 +43,23 @@ $(document).ready(function() {
     // }
 
     // AJAX Call - 5-Day Forecast
+    function searchCityForecast(city) {
+        $("#country-name").text("");
 
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=5&appid=" + key;
+        
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+
+            var countryName = response.country;
+            $("#country-name").append(countryName);
+
+        })
+    }
 
     // Event listener on city search btn
     $("#search-btn").on("click", function(event) {
@@ -70,7 +86,7 @@ $(document).ready(function() {
     function renderCities() {
         pastCityList.html("");
 
-        for (var i = 0; i< cities.length; i++) {
+        for (var i = 0; i < 11; i++) {
             var city = cities[i];
 
             var li = $("<li>");

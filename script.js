@@ -55,7 +55,7 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
 
-            var countryName = response.country;
+            var countryName = response.city.country;
             $("#country-name").append(countryName);
 
         })
@@ -68,7 +68,7 @@ $(document).ready(function() {
         // Store the city searched
         var inputCity = $("#city-input").val().trim();
         searchCityWeather(inputCity);
-
+        searchCityForecast(inputCity);
     });
 
     // Use moment.js to display todays day nex tto current city, and next 5 days in forecast

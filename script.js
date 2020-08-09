@@ -86,7 +86,7 @@ $(document).ready(function() {
     function renderCities() {
         pastCityList.html("");
 
-        for (var i = 0; i < 11; i++) {
+        for (var i = 0; i < 10; i++) {
             var city = cities[i];
 
             var li = $("<li>");
@@ -122,7 +122,7 @@ $(document).ready(function() {
             return;
         }
 
-        cities.push(cityText);
+        cities.unshift(cityText);
         $("#city-input").html("");
 
         storeCities();

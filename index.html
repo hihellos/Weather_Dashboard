@@ -14,100 +14,106 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="page-header text-center mt-4 mb-4">
-            <h1>City Temps</h1>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <!-- Search column -->
-            <div class="col-md-2">
-                <div class="row mb-2">
-                    <!-- <h4>Search Temps:</h4> -->
-                    <form id="city-search" method="POST">
-                        <input type="text" id="city-input" placeholder="City">
-                        <input id="search-btn" type="submit" class="btn btn-light mt-1" value="Search">
-                    </form>
-                </div>
-                <div class="list-group">
-                    <ul id="past-cities" class="p-0"></ul>
-                </div>
+    <div class="wrapper">
+        <div class="container">
+            <div class="page-header text-center mt-4 mb-4">
+                <h1>City Temps</h1>
             </div>
-            <!-- Weather Display -->
-            <div class="col-md-10">
-                <div class="jumbotron">
-                    <div class="row justify-content-center">
-                        <h2 id="searchedCityDisplay"></h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <!-- Search column -->
+                <div class="col-md-2">
+                    <div class="row mb-2">
+                        <!-- <h4>Search Temps:</h4> -->
+                        <form id="city-search" method="POST">
+                            <input type="text" id="city-input" placeholder="City">
+                            <input id="search-btn" type="submit" class="btn btn-light mt-1" value="Search">
+                        </form>
                     </div>
-                    <div class="row justify-content-center">
-                        <small id="country-name"></small>
-                    </div>
-                    <div class="card-deck mt-4">
-                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-                                <h5 class="card-title">Temperature</h5>
-                                <h3 class="card-text" id="temp-now"></h3>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-                                <h5 class="card-title">Humidity</h5>
-                                <h3 class="card-text" id="humid-now"></h3>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-                                <h5 class="card-title">Wind Speed</h5>
-                                <h3 class="card-text" id="wind-now"></h3>
-                            </div>
-                        </div>
-                        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-                            <div class="card-body">
-                                <h5 class="card-title">UV Index</h5>
-                                <h3 class="card-text" id="uv-index"></h3>
-                            </div>
-                        </div>
+                    <div class="list-group">
+                        <ul id="past-cities" class="p-0"></ul>
                     </div>
                 </div>
-                <div class="jumbotron">
-                    <div class="row justify-content-center mb-4">
-                        <h4 class="forecast">5-Day Forecast</h4>
+                <!-- Weather Display -->
+                <div class="col-md-10">
+                    <div class="jumbotron">
+                        <div class="row justify-content-center">
+                            <h2 id="searchedCityDisplay"></h2>
+                        </div>
+                        <div class="row justify-content-center">
+                            <small id="country-name"></small>
+                        </div>
+                        <br>
+                        <div class="row justify-content-center">
+                            <small id="today-date"></small>
+                        </div>
+                        <div class="card-deck mt-4">
+                            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Temperature</h5>
+                                    <h3 class="card-text" id="temp-now"></h3>
+                                </div>
+                            </div>
+                            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Humidity</h5>
+                                    <h3 class="card-text" id="humid-now"></h3>
+                                </div>
+                            </div>
+                            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">Wind Speed</h5>
+                                    <h3 class="card-text" id="wind-now"></h3>
+                                </div>
+                            </div>
+                            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
+                                <div class="card-body">
+                                    <h5 class="card-title">UV Index</h5>
+                                    <h3 class="card-text" id="uv-index"></h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-deck">
-                        <div class="card">
-                            <div class="card-body shadow-sm">
-                                <h5 class="card-title" id="next-day-1">1</h5>
-                                <p class="card-text" id="f-temp1"></p>
-                                <p class="card-text" id="f-humid1"></p>
-                            </div>
+                    <div class="jumbotron">
+                        <div class="row justify-content-center mb-4">
+                            <h4 class="forecast">5-Day Forecast</h4>
                         </div>
-                        <div class="card">
-                            <div class="card-body shadow-sm">
-                                <h5 class="card-title" id="next-day-2">2</h5>
-                                <p class="card-text" id="f-temp2"></p>
-                                <p class="card-text" id="f-humid2"></p>
+                        <div class="card-deck">
+                            <div class="card">
+                                <div class="card-body shadow-sm">
+                                    <small class="card-title" id="next-day-1"></small>
+                                    <p class="card-text" id="f-temp1"></p>
+                                    <p class="card-text" id="f-humid1"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body shadow-sm">
-                                <h5 class="card-title" id="next-day-3">3</h5>
-                                <p class="card-text" id="f-temp3"></p>
-                                <p class="card-text" id="f-humid3"></p>
+                            <div class="card">
+                                <div class="card-body shadow-sm">
+                                    <small class="card-title" id="next-day-2"></small>
+                                    <p class="card-text" id="f-temp2"></p>
+                                    <p class="card-text" id="f-humid2"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body shadow-sm">
-                                <h5 class="card-title" id="next-day-4">4</h5>
-                                <p class="card-text" id="f-temp4"></p>
-                                <p class="card-text" id="f-humid4"></p>
+                            <div class="card">
+                                <div class="card-body shadow-sm">
+                                    <small class="card-title" id="next-day-3"></small>
+                                    <p class="card-text" id="f-temp3"></p>
+                                    <p class="card-text" id="f-humid3"></p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body shadow-sm">
-                                <h5 class="card-title" id="next-day-5">5</h5>
-                                <p class="card-text" id="f-temp5"></p>
-                                <p class="card-text" id="f-humid5"></p>
+                            <div class="card">
+                                <div class="card-body shadow-sm">
+                                    <small class="card-title" id="next-day-4"></small>
+                                    <p class="card-text" id="f-temp4"></p>
+                                    <p class="card-text" id="f-humid4"></p>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body shadow-sm">
+                                    <small class="card-title" id="next-day-5"></small>
+                                    <p class="card-text" id="f-temp5"></p>
+                                    <p class="card-text" id="f-humid5"></p>
+                                </div>
                             </div>
                         </div>
                     </div>

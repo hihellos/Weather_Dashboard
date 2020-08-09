@@ -44,9 +44,26 @@ $(document).ready(function() {
 
     // AJAX Call - 5-Day Forecast
     function searchCityForecast(city) {
+        $("#today-date").text("");
         $("#country-name").text("");
+        $("#next-day-1").text("");
+        $("#next-day-2").text("");
+        $("#next-day-3").text("");
+        $("#next-day-4").text("");
+        $("#next-day-5").text("");
+        $("#f-temp1").text("");
+        $("#f-temp2").text("");
+        $("#f-temp3").text("");
+        $("#f-temp4").text("");
+        $("#f-temp5").text("");
+        $("#f-humid1").text("");
+        $("#f-humid2").text("");
+        $("#f-humid3").text("");
+        $("#f-humid4").text("");
+        $("#f-humid5").text("");
 
-        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&cnt=5&appid=" + key;
+
+        var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key;
         
 
         $.ajax({
@@ -55,8 +72,42 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
 
+            var todayDate = response.list[0].dt_txt;
+            $("#today-date").text(todayDate.slice(0, 10));
             var countryName = response.city.country;
             $("#country-name").append(countryName);
+
+            var nextDay1 = response.list[6].dt_txt;
+            $("#next-day-1").text(nextDay1.slice(5, 10));
+            var nextDay2 = response.list[14].dt_txt;
+            $("#next-day-2").text(nextDay2.slice(5, 10));
+            var nextDay3 = response.list[22].dt_txt;
+            $("#next-day-3").text(nextDay3.slice(5, 10));
+            var nextDay4 = response.list[30].dt_txt;
+            $("#next-day-4").text(nextDay4.slice(5, 10));
+            var nextDay5 = response.list[38].dt_txt;
+            $("#next-day-5").text(nextDay5.slice(5, 10));
+
+            var nextTemp1 = response.list[6].main.temp;
+            $("#f-temp1").append(nextTemp1 + "&deg;" + " F");
+            var nextHumid1 = response.list[6].main.humidity;
+            $("#f-humid1").append(nextHumid1 + "&percnt;" + " Humidity");
+            var nextTemp2 = response.list[14].main.temp;
+            $("#f-temp2").append(nextTemp2 + "&deg;" + " F");
+            var nextHumid2 = response.list[14].main.humidity;
+            $("#f-humid2").append(nextHumid2 + "&percnt;" + " Humidity");
+            var nextTemp3 = response.list[22].main.temp;
+            $("#f-temp3").append(nextTemp3 + "&deg;" + " F");
+            var nextHumid3 = response.list[22].main.humidity;
+            $("#f-humid3").append(nextHumid3 + "&percnt;" + " Humidity");
+            var nextTemp4 = response.list[30].main.temp;
+            $("#f-temp4").append(nextTemp4 + "&deg;" + " F");
+            var nextHumid4 = response.list[30].main.humidity;
+            $("#f-humid4").append(nextHumid4 + "&percnt;" + " Humidity");
+            var nextTemp5 = response.list[38].main.temp;
+            $("#f-temp5").append(nextTemp5 + "&deg;" + " F");
+            var nextHumid5 = response.list[38].main.humidity;
+            $("#f-humid5").append(nextHumid5 + "&percnt;" + " Humidity");
 
         })
     }
@@ -70,8 +121,6 @@ $(document).ready(function() {
         searchCityWeather(inputCity);
         searchCityForecast(inputCity);
     });
-
-    // Use moment.js to display todays day nex tto current city, and next 5 days in forecast
 
     // LOCAL STORAGE - Store search history of cities
     var cityInput = $("#city-input");

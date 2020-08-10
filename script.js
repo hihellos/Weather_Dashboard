@@ -37,14 +37,12 @@ $(document).ready(function() {
             var windSpeedNow = response.wind.speed;
             $("#wind-now").append(Math.round(windSpeedNow) + " MPH");
 
-            // searchUVindex();
-
             var lat = response.coord.lat;
-            var lon = response.coord.lon;
             console.log(lat);
+            var lon = response.coord.lon;
             console.log(lon);
 
-            // AJAX call - UV Index
+            // Nested AJAX call - UV Index
                 var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
 
                 $.ajax({
@@ -54,7 +52,23 @@ $(document).ready(function() {
                     console.log(response);
 
                     var uvIndexNow = response.value;
-                    $("#uv-index").append(uvIndexNow);
+                    $("#uv-index").text(uvIndexNow);
+
+                    if (uvIndexNow <= 2) {
+                        $("#uv-index").addClass("badge badge-success");
+                    } 
+                    if (uvIndexNow > 2 && uvIndexNow <= 5) {
+                        $("#uv-index").removeClass();
+                        $("#uv-index").addClass("badge badge-warning");
+                    }
+                    if (uvIndexNow > 5 && uvIndexNow <=7) {
+                        $("#uv-index").removeClass();
+                        $("#uv-index").addClass("badge badge-danger"); // no orange badge in bootstrap :(
+                    }
+                    if (uvIndexNow > 7) {
+                        $("#uv-index").removeClass();
+                        $("#uv-index").addClass("badge badge-danger");
+                    }
                 })            
             
         });

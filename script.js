@@ -6,10 +6,11 @@ $(document).ready(function() {
     // AJAX call to OpenWeather API - Current Weather Data
     function searchCityWeather(city) {
         $("#searchedCityDisplay").text("");
+        $("#icon-row").empty();
         $("#temp-now").text("");
         $("#humid-now").text("");
         $("#wind-now").text("");
-        $("#icon-row").empty();
+        $("#uv-index").text("");
 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + key;
 
@@ -40,22 +41,21 @@ $(document).ready(function() {
 
             var lat = response.coord.lat;
             var lon = response.coord.lon;
+            console.log(lat);
+            console.log(lon);
 
-            // // AJAX call - UV Index
-            // function searchUVindex() {
-            //     var queryURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
+            // AJAX call - UV Index
+                var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
 
-            //     $.ajax({
-            //         url: queryURL,
-            //         method: "GET"
-            //     }).then(function(response) {
-            //         console.log(response);
+                $.ajax({
+                    url: uvIndexURL,
+                    method: "GET"
+                }).then(function(response) {
+                    console.log(response);
 
-            //         // var uvIndexNow = response.
-            //     })
-                
-            // }
-            
+                    var uvIndexNow = response.value;
+                    $("#uv-index").append(uvIndexNow);
+                })            
             
         });
     }

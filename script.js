@@ -54,15 +54,15 @@ $(document).ready(function() {
                     var uvIndexNow = response.value;
                     $("#uv-index").text(uvIndexNow);
 
-                    if (uvIndexNow >= 4 && uvIndexNow <= 6) {
+                    if (response.value > 4 && response.value < 7) {
                         $("#uv-index").removeClass();
                         $("#uv-index").addClass("badge badge-warning");
                     }
-                    if (uvIndexNow < 3) {
+                    if (response.value < 4) {
                         $("#uv-index").removeClass();
                         $("#uv-index").addClass("badge badge-success");
                     } 
-                    if (uvIndexNow > 7) {
+                    if (response.value > 7) {
                         $("#uv-index").removeClass();
                         $("#uv-index").addClass("badge badge-danger");
                     }
@@ -70,7 +70,6 @@ $(document).ready(function() {
             
         });
     }
-
 
     // AJAX Call - 5-Day Forecast
     function searchCityForecast(city) {
@@ -98,13 +97,12 @@ $(document).ready(function() {
         $("#f-icon5").empty();
 
         var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + "&units=imperial&appid=" + key;
-        
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function(response) {
-            console.log(response);
+            // console.log(response);
 
             var todayDate = response.list[0].dt_txt;
             $("#today-date").text(todayDate.slice(0, 10));
@@ -237,7 +235,7 @@ $(document).ready(function() {
     });
 
     // When a city in the search history is clicked, grab the city name from local storage value and rerun ajax call ? 
-    // I CANNOT BELIEVE I MADE THIS WORK BY MYSELF I ALMOST GAVE UP
+    // I CANNOT BELIEVE I MADE THIS WORK BY MYSELF I ALMOST GAVE UP I hit a wall on productivity and was stuck on this for so long 
     $("li").on("click", function(event) {
         event.preventDefault();
 

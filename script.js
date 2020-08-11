@@ -121,15 +121,15 @@ $(document).ready(function() {
             $("#next-day-5").text(nextDay5.slice(5, 10));
 
             var nextIcon1 = response.list[6].weather[0].icon;
-            $("#f-icon1").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon1 + '@2x.png');
+            $("#f-icon1").attr('src', 'https://openweathermap.org/img/wn/' + nextIcon1 + '@2x.png');
             var nextIcon2 = response.list[14].weather[0].icon;
-            $("#f-icon2").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon2 + '@2x.png');
+            $("#f-icon2").attr('src', 'https://openweathermap.org/img/wn/' + nextIcon2 + '@2x.png');
             var nextIcon3 = response.list[22].weather[0].icon;
-            $("#f-icon3").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon3 + '@2x.png');
+            $("#f-icon3").attr('src', 'https://openweathermap.org/img/wn/' + nextIcon3 + '@2x.png');
             var nextIcon4 = response.list[30].weather[0].icon;
-            $("#f-icon4").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon4 + '@2x.png');
+            $("#f-icon4").attr('src', 'https://openweathermap.org/img/wn/' + nextIcon4 + '@2x.png');
             var nextIcon5 = response.list[38].weather[0].icon;
-            $("#f-icon5").attr('src', 'http://openweathermap.org/img/wn/' + nextIcon5 + '@2x.png');
+            $("#f-icon5").attr('src', 'https://openweathermap.org/img/wn/' + nextIcon5 + '@2x.png');
 
             var nextTemp1 = response.list[6].main.temp;
             $("#f-temp1").append(nextTemp1 + "&deg;" + " F");

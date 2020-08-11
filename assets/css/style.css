@@ -1,7 +1,11 @@
-.wrapper {
-padding-top: 5%;
+body {
+    background-image: linear-gradient(to bottom right, #C9E2F8, white, white, #C9E2F8);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .jumbotron {
     padding: 1rem;
+    /* background-color: white; */
+    background: transparent;
 }

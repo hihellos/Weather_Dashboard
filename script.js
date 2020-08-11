@@ -25,7 +25,7 @@ $(document).ready(function() {
             
             var iconNow = response.weather[0].icon;
             var iconDisplay = $("<img>")
-            .attr('src', 'http://openweathermap.org/img/wn/' + iconNow + '@2x.png');
+            .attr('src', 'https://openweathermap.org/img/wn/' + iconNow + '@2x.png');
             $("#icon-row").append(iconDisplay);
 
             var tempNow = response.main.temp;
@@ -43,7 +43,7 @@ $(document).ready(function() {
             // console.log(lon);
 
             // Nested AJAX call - UV Index
-                var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
+                var uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
 
                 $.ajax({
                     url: uvIndexURL,

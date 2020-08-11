@@ -38,9 +38,9 @@ $(document).ready(function() {
             $("#wind-now").append(Math.round(windSpeedNow) + " MPH");
 
             var lat = response.coord.lat;
-            console.log(lat);
+            // console.log(lat);
             var lon = response.coord.lon;
-            console.log(lon);
+            // console.log(lon);
 
             // Nested AJAX call - UV Index
                 var uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?appid=" + key + "&lat=" + lat + "&lon=" + lon;
@@ -49,22 +49,19 @@ $(document).ready(function() {
                     url: uvIndexURL,
                     method: "GET"
                 }).then(function(response) {
-                    console.log(response);
+                    // console.log(response);
 
                     var uvIndexNow = response.value;
                     $("#uv-index").text(uvIndexNow);
 
-                    if (uvIndexNow <= 2) {
-                        $("#uv-index").addClass("badge badge-success");
-                    } 
-                    if (uvIndexNow > 2 && uvIndexNow <= 5) {
+                    if (uvIndexNow >= 4 && uvIndexNow <= 6) {
                         $("#uv-index").removeClass();
                         $("#uv-index").addClass("badge badge-warning");
                     }
-                    if (uvIndexNow > 5 && uvIndexNow <=7) {
+                    if (uvIndexNow < 3) {
                         $("#uv-index").removeClass();
-                        $("#uv-index").addClass("badge badge-danger"); // no orange badge in bootstrap :(
-                    }
+                        $("#uv-index").addClass("badge badge-success");
+                    } 
                     if (uvIndexNow > 7) {
                         $("#uv-index").removeClass();
                         $("#uv-index").addClass("badge badge-danger");
@@ -206,10 +203,20 @@ $(document).ready(function() {
     }
 
     function storeCities() {
-        localStorage.setItem("cities", JSON.stringify(cities));
+        var citiesToStore = [];
+
+        for (var i=0; i < cities.length; i++) {
+            if (!citiesToStore.includes(cities[i])) {
+                citiesToStore.push(cities[i]);
+            }
+        }
+        console.log("city to store: ", citiesToStore);
+        console.log(cities);
+        localStorage.setItem("cities", JSON.stringify(citiesToStore));
+
     }
 
-    // When a city is searched
+    // When a city is searched, add to bottom of searched list
     searchForm.on("click", function(event) {
         event.preventDefault();
 
@@ -219,25 +226,26 @@ $(document).ready(function() {
             return;
         }
 
-        cities.unshift(cityText);
-        $("#city-input").html("");
+        // for (var i=0; i< cities.length; i++) {
+        //     if (!cities.includes.cityText) {
+                cities.unshift(cityText);
+        //     }
+        // }
 
         storeCities();
         renderCities();
     });
 
-    // When a city in the search history is clicked
-    pastCityList.on("click", function(event) {
+    // When a city in the search history is clicked, grab the city name from local storage value and rerun ajax call ? 
+    // I CANNOT BELIEVE I MADE THIS WORK BY MYSELF I ALMOST GAVE UP
+    $("li").on("click", function(event) {
         event.preventDefault();
 
-        // var element = event.target;
+        var cityClicked = $(this).text();
+        console.log(cityClicked);
 
-        // if (element.matches("li") === true) {
-        //     var index = JSON.parse(localStorage.getItem(cities[i]));
-
-        //     console.log(index);
-        //     searchCityWeather(index);
-        // }
+        searchCityWeather(cityClicked);
+        searchCityForecast(cityClicked);
     })
 
     // When page is opened, present last searched city info

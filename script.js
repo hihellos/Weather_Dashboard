@@ -55,16 +55,16 @@ $(document).ready(function() {
                     $("#uv-index").text(uvIndexNow);
 
                     if (response.value > 4 && response.value < 7) {
-                        $("#uv-index").removeClass();
-                        $("#uv-index").addClass("badge badge-warning");
+                        $("#uv-index").removeAttr();
+                        $("#uv-index").attr("style", "color: orange");
                     }
                     if (response.value < 4) {
-                        $("#uv-index").removeClass();
-                        $("#uv-index").addClass("badge badge-success");
+                        $("#uv-index").removeAttr();
+                        $("#uv-index").attr("style", "color: green");
                     } 
                     if (response.value > 7) {
-                        $("#uv-index").removeClass();
-                        $("#uv-index").addClass("badge badge-danger");
+                        $("#uv-index").removeAttr();
+                        $("#uv-index").attr("style", "color: red");
                     }
                 })            
             
@@ -246,5 +246,4 @@ $(document).ready(function() {
         searchCityForecast(cityClicked);
     })
 
-    // When page is opened, present last searched city info
 });
